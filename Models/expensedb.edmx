@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="expensedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="catagory">
+          <Key>
+            <PropertyRef Name="catagory_id" />
+          </Key>
+          <Property Name="catagory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catagory_name" Type="nvarchar(max)" />
+          <Property Name="catagory_limit" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="expense">
+          <Key>
+            <PropertyRef Name="expense_id" />
+          </Key>
+          <Property Name="expense_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Discription" Type="nvarchar(max)" />
+          <Property Name="datetime" Type="datetime2" Precision="7" />
+          <Property Name="amount" Type="money" />
+          <Property Name="catagory" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="total_limit">
+          <Key>
+            <PropertyRef Name="total_id" />
+          </Key>
+          <Property Name="total_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="total_limit" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="8" />
+          <Property Name="confirm_password" Type="nchar" MaxLength="8" />
+        </EntityType>
+        <EntityContainer Name="expensedbModelStoreContainer">
+          <EntitySet Name="catagory" EntityType="Self.catagory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expense" EntityType="Self.expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="total_limit" EntityType="Self.total_limit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="expensedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="catagory">
+          <Key>
+            <PropertyRef Name="catagory_id" />
+          </Key>
+          <Property Name="catagory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catagory_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="catagory_limit" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="expense">
+          <Key>
+            <PropertyRef Name="expense_id" />
+          </Key>
+          <Property Name="expense_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="datetime" Type="DateTime" Precision="7" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="catagory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="total_limit">
+          <Key>
+            <PropertyRef Name="total_id" />
+          </Key>
+          <Property Name="total_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="total_limit1" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="confirm_password" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="expensedbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="catagories" EntityType="Self.catagory" />
+          <EntitySet Name="expenses" EntityType="Self.expense" />
+          <EntitySet Name="total_limit" EntityType="Self.total_limit" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="expensedbModelStoreContainer" CdmEntityContainer="expensedbEntities1">
+          <EntitySetMapping Name="catagories">
+            <EntityTypeMapping TypeName="expensedbModel.catagory">
+              <MappingFragment StoreEntitySet="catagory">
+                <ScalarProperty Name="catagory_id" ColumnName="catagory_id" />
+                <ScalarProperty Name="catagory_name" ColumnName="catagory_name" />
+                <ScalarProperty Name="catagory_limit" ColumnName="catagory_limit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expenses">
+            <EntityTypeMapping TypeName="expensedbModel.expense">
+              <MappingFragment StoreEntitySet="expense">
+                <ScalarProperty Name="expense_id" ColumnName="expense_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="catagory" ColumnName="catagory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="total_limit">
+            <EntityTypeMapping TypeName="expensedbModel.total_limit">
+              <MappingFragment StoreEntitySet="total_limit">
+                <ScalarProperty Name="total_id" ColumnName="total_id" />
+                <ScalarProperty Name="total_limit1" ColumnName="total_limit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="expensedbModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="confirm_password" ColumnName="confirm_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

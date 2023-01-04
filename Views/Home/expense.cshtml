@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "expense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<body>
+    <link href="~/css/forms.css" rel="stylesheet" />
+
+    <div class="form">
+        <form action="#" method="post">
+            <h2>Expense</h2>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="Title" placeholder="Title of Expense" required="required">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="dropbtn  ">select expense</label>
+                <select class="dropdown">
+                    <option value="expense">hospital</option>
+                    <option value="expense">Food</option>
+                    <option value="expense">clothes</option>
+                    <option value="expense">lightbill</option>
+                    <option value="expense">waterbill</option>
+                    <option value="expense">petrol</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" name="Amount" placeholder="Amount of Expense" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Add</button>
+            </div>
+        </form>
+        <!-- <div class="text-center">Already have an account? <a href="sing_up.html">Sign up</a></div> -->
+    </div>
+</body>
+</html>
