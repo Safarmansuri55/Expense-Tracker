@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Expanse_Manager.Models.catagory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListofCartagories</title>
+    <link href="~/css/dashboard.css" rel="stylesheet" />
+    <link href="~/css/forms.css" rel="stylesheet" />
+
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" style="width:1800px" height="100px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.catagory_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.catagory_limit)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.catagory_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.catagory_limit)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Editc", new { id=item.catagory_id }, new { @class = "btn btn-success" } )|
+               
+                @Html.ActionLink("Delete", "Deletec", new { id=item.catagory_id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

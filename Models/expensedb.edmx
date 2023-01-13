@@ -23,6 +23,7 @@
           <Property Name="datetime" Type="datetime2" Precision="7" />
           <Property Name="amount" Type="money" />
           <Property Name="catagory" Type="nvarchar(max)" />
+          <Property Name="catagory_id" Type="int" />
         </EntityType>
         <EntityType Name="total_limit">
           <Key>
@@ -39,13 +40,28 @@
           <Property Name="username" Type="nvarchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="nchar" MaxLength="8" />
-          <Property Name="confirm_password" Type="nchar" MaxLength="8" />
         </EntityType>
+        <Association Name="FK_expense_catagory">
+          <End Role="catagory" Type="Self.catagory" Multiplicity="0..1" />
+          <End Role="expense" Type="Self.expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catagory">
+              <PropertyRef Name="catagory_id" />
+            </Principal>
+            <Dependent Role="expense">
+              <PropertyRef Name="catagory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="expensedbModelStoreContainer">
           <EntitySet Name="catagory" EntityType="Self.catagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="expense" EntityType="Self.expense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="total_limit" EntityType="Self.total_limit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_expense_catagory" Association="Self.FK_expense_catagory">
+            <End Role="catagory" EntitySet="catagory" />
+            <End Role="expense" EntitySet="expense" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -59,6 +75,7 @@
           <Property Name="catagory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="catagory_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="catagory_limit" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="expenses" Relationship="Self.FK_expense_catagory" FromRole="catagory" ToRole="expense" />
         </EntityType>
         <EntityType Name="expense">
           <Key>
@@ -70,6 +87,8 @@
           <Property Name="datetime" Type="DateTime" Precision="7" />
           <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="catagory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="catagory_id" Type="Int32" />
+          <NavigationProperty Name="catagory1" Relationship="Self.FK_expense_catagory" FromRole="expense" ToRole="catagory" />
         </EntityType>
         <EntityType Name="total_limit">
           <Key>
@@ -86,20 +105,35 @@
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
-          <Property Name="confirm_password" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="expensedbEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_expense_catagory">
+          <End Role="catagory" Type="Self.catagory" Multiplicity="0..1" />
+          <End Role="expense" Type="Self.expense" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catagory">
+              <PropertyRef Name="catagory_id" />
+            </Principal>
+            <Dependent Role="expense">
+              <PropertyRef Name="catagory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="expensedbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="catagories" EntityType="Self.catagory" />
           <EntitySet Name="expenses" EntityType="Self.expense" />
           <EntitySet Name="total_limit" EntityType="Self.total_limit" />
           <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_expense_catagory" Association="Self.FK_expense_catagory">
+            <End Role="catagory" EntitySet="catagories" />
+            <End Role="expense" EntitySet="expenses" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="expensedbModelStoreContainer" CdmEntityContainer="expensedbEntities1">
+        <EntityContainerMapping StorageEntityContainer="expensedbModelStoreContainer" CdmEntityContainer="expensedbEntities2">
           <EntitySetMapping Name="catagories">
             <EntityTypeMapping TypeName="expensedbModel.catagory">
               <MappingFragment StoreEntitySet="catagory">
@@ -118,6 +152,7 @@
                 <ScalarProperty Name="datetime" ColumnName="datetime" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="catagory" ColumnName="catagory" />
+                <ScalarProperty Name="catagory_id" ColumnName="catagory_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -136,7 +171,6 @@
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="confirm_password" ColumnName="confirm_password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

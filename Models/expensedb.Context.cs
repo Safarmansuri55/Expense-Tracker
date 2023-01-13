@@ -13,10 +13,10 @@ namespace Expanse_Manager.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class expensedbEntities1 : DbContext
+    public partial class expensedbEntities2 : DbContext
     {
-        public expensedbEntities1()
-            : base("name=expensedbEntities1")
+        public expensedbEntities2()
+            : base("name=expensedbEntities2")
         {
         }
     

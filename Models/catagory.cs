@@ -14,8 +14,17 @@ namespace Expanse_Manager.Models
     
     public partial class catagory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public catagory()
+        {
+            this.expenses = new HashSet<expense>();
+        }
+    
         public int catagory_id { get; set; }
         public string catagory_name { get; set; }
         public Nullable<decimal> catagory_limit { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<expense> expenses { get; set; }
     }
 }

@@ -11,14 +11,21 @@ namespace Expanse_Manager.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class expense
     {
         public int expense_id { get; set; }
         public string Title { get; set; }
         public string Discription { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true,
+               DataFormatString = "{0:yyyy/MM/dd HH:mm}")]
         public Nullable<System.DateTime> datetime { get; set; }
         public Nullable<decimal> amount { get; set; }
         public string catagory { get; set; }
+        public Nullable<int> catagory_id { get; set; }
+    
+        public virtual catagory catagory1 { get; set; }
     }
 }

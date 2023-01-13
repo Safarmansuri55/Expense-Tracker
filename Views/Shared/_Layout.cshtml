@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>expense tracker</title>
     <link href="~/css/dashboard.css" rel="stylesheet" />
-    <!link href="~/css/forms.css" rel="stylesheet" />
+   @* <link href="~/css/forms.css" rel="stylesheet" />*@
 
 </head>
 <body>
@@ -14,14 +15,19 @@
         <div id="mySidenav" class="sidenav">
             <p class="logo"><span>Expense</span>-Tracker</p>
 
-            @Html.ActionLink("Catagory", "catagory2", "Home")
+            @Html.ActionLink("Catagory", "ListofCartagories", "Home")
+            @Html.ActionLink("Expense", "ListExpense2", "Home")
             @Html.ActionLink("Sign up", "signup", "Home")
+            @Html.ActionLink("sign out", "signout", "Home")
+
+
+
             @* @Html.ActionLink("Total Limit", "limit", "Home")
             *@
             @* <a href="deshboard.html" class="icon-a"><i class="fa fa-dashboard icons"></i>   Dashboard</a>
-            <a href="expenses.html" class="icon-a"><i class="fa fa-money"></i> Expenses</a>
-            <a href="category.html" class="icon-a"><i class="fa fa-list icons"></i>   category</a>
-            <a href="totalLimit.html" class="icon-a"><i class="fa fa-line-chart"></i>   Expense Limit</a>
+        <a href="expenses.html" class="icon-a"><i class="fa fa-money"></i> Expenses</a>
+        <a href="category.html" class="icon-a"><i class="fa fa-list icons"></i>   category</a>
+        <a href="totalLimit.html" class="icon-a"><i class="fa fa-line-chart"></i>   Expense Limit</a>
             *@
 
         </div>
@@ -64,6 +70,8 @@
                 <div class="links">
                     @*<a href="category.html" class="move">Add new Expense</a>*@
                     @Html.ActionLink("Add Expense", "expense", "Home", new { @class = "move" })
+                    @Html.ActionLink("Show Expense", "ListExpense", "Home", new { @class = "move" })
+
                 </div>
             </div>
             <!-- <div class="col-div-3">
@@ -79,11 +87,27 @@
                 </div>
                 <div class="links">
                     @*<a href="category.html" class="move">Add Total Limit</a>*@
+
                     @Html.ActionLink("Total Limit", "limit", "Home", new { @class = "move" })
+                    
+                    @Html.ActionLink("Show Total limit", "Listlimit", "Home", new { @class = "move" })
+
+
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <br /><br />
+            <div class="clearfix">
+
+              
+
+
+
+
+
+            </div>
+           <br /><br />
+
+
+          
 
         </div>
         </div>
@@ -152,6 +176,11 @@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/jquery.validate.js"></script>
+
+
+
+
         @RenderSection("scripts", required: false)
 </body>
 </html>

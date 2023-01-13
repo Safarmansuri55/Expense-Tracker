@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Expanse_Manager.Models.expense>
+
+@{
+    ViewBag.Title = "ListExpense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListExpense</h2>
+<link href="~/css/dashboard.css" rel="stylesheet" />
+<link href="~/css/forms.css" rel="stylesheet" />
+
+<p>
+    @Html.ActionLink("Add Expense", "Addexpense")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discription)
+        </th>
+        <th>
+                @Html.DisplayNameFor(model => model.datetime)
+            </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.catagory)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.catagory1.catagory_name)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discription)
+            </td>
+             <td>
+                    @Html.DisplayFor(modelItem => item.datetime)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.catagory)
+            </td>
+            <td>
+                   @* @Html.DisplayFor(modelItem => item.catagory1.catagory_name)*@
+               
+
+                </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.expense_id }, new { @class = "btn btn-success" }) |
+                @* @Html.ActionLink("Details", "Details", new { id=item.expense_id }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.expense_id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

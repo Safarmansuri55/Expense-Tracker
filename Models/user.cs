@@ -11,13 +11,14 @@ namespace Expanse_Manager.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class user
     {
         public int user_id { get; set; }
+        [Required]
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public string confirm_password { get; set; }
     }
 }
